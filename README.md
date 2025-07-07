@@ -53,10 +53,5 @@ $ ```i2cdetect -y 1```</br>
 
 #
 
-### Демонстрация:
-![](https://github.com/user-attachments/assets/2d4f41e6-1d3a-4711-abdc-2083828bbfb0)
-
-#
-
 ### Связь со мной:
 #### [Telegram](https://t.me/mr_lukov)
